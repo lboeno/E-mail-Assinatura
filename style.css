@@ -1,0 +1,283 @@
+/* Importação da Fonte */
+@font-face {
+    font-family: 'MinhaFonteCustom';
+    src: url('assets/fonte.ttf') format('truetype');
+}
+
+/* 1. Reset e Base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 2. Layout Principal */
+.main-layout {
+    display: grid;
+    /* MUDANÇA 1: Aumentado para 450px (era 350px) */
+    grid-template-columns: 450px 1fr; 
+    min-height: 100vh;
+}
+
+/* 3. Sidebar (Painel Esquerdo - AGORA MAIOR) */
+.sidebar {
+    background-color: #ffffff;
+    border-right: 1px solid #dcdcdc;
+    /* Mais espaço interno */
+    padding: 30px; 
+    height: 100vh;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.08);
+    z-index: 100;
+}
+
+.sidebar h2 {
+    font-size: 1.8rem; /* Título maior */
+    margin-bottom: 25px;
+    color: #2c3e50;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Grupos de Controle (Cartões) */
+.control-group {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    /* Mais "respiro" dentro dos cards */
+    padding: 20px; 
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.control-group:hover {
+    border-color: #bdc3c7;
+    transform: translateY(-2px);
+}
+
+.control-group.active-group {
+    background-color: #eaf6ff;
+    border-color: #2196f3;
+    box-shadow: 0 4px 10px rgba(33, 150, 243, 0.15);
+}
+
+.header-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-size: 1.1rem; /* Texto do cabeçalho maior */
+    color: #444;
+}
+
+.header-group input[type="radio"] {
+    width: 20px; /* Bolinha de seleção maior */
+    height: 20px;
+    accent-color: #2196f3;
+}
+
+/* Checkbox para ativar/desativar campos */
+.toggle-field {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #27ae60;
+}
+
+.toggle-field:hover {
+    opacity: 0.8;
+}
+
+/* Inputs Principais (Nome, Cargo, etc) */
+.main-input {
+    width: 100%;
+    /* Campo mais alto/gordinho */
+    padding: 14px; 
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 1.1rem; /* Letra maior ao digitar */
+    background-color: #fff;
+}
+
+.main-input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Linha de Coordenadas (X, Y, Tam, Cor) */
+.coords-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.coords-row label {
+    font-size: 0.95rem; /* Legendas maiores */
+    font-weight: 600;
+    color: #555;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 8px 12px; /* Botõezinhos maiores */
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    flex: 1;
+}
+
+.coords-row input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    margin-left: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    outline: none;
+    color: #333;
+}
+
+/* Botão de Download */
+#btnBaixar {
+    width: 100%;
+    padding: 18px; /* Botão bem grande */
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background 0.3s, transform 0.2s;
+}
+
+#btnBaixar:hover {
+    background-color: #219150;
+    transform: translateY(-2px);
+}
+
+/* 4. Área de Preview (Direita) */
+.preview-area {
+    background-color: #2c3e50;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.instruction-bar {
+    background-color: #fff;
+    padding: 15px 30px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    max-width: 700px;
+}
+
+.canvas-wrapper {
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 8px solid #fff; /* Borda branca grossa tipo foto */
+    line-height: 0;
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+canvas {
+    display: block;
+    max-width: 100%;
+    height: auto !important;
+    cursor: crosshair;
+}
+
+/* 5. Responsividade */
+@media (max-width: 1100px) {
+    .main-layout {
+        grid-template-columns: 1fr; /* Empilha tudo se a tela for média/pequena */
+    }
+
+    .sidebar {
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 2px solid #ccc;
+        padding: 20px;
+    }
+
+    .preview-area {
+        padding: 20px;
+        min-height: 50vh;
+    }
+    /* Estilo do Input de Arquivo */
+.input-file {
+    width: 100%;
+    padding: 10px;
+    background: #fff;
+    border: 1px dashed #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.input-file:hover {
+    background-color: #f0f8ff;
+    border-color: #3498db;
+}
+
+.file-info {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.global-settings {
+    background-color: #fff3cd; /* Um amarelo suave para destacar que é global */
+    border-color: #ffeeba;
+}
+/* Necessário para a lupa se posicionar em relação à caixa, não à página */
+.canvas-wrapper {
+    position: relative; 
+    /* O resto do estilo wrapper continua igual... */
+}
+
+/* Estilo da Lupa */
+#canvasLupa {
+    position: absolute;
+    border: 3px solid #fff; /* Borda branca grossa */
+    border-radius: 50%; /* Faz ficar redonda */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Sombra para destacar */
+    
+    /* Configuração de tamanho e comportamento */
+    width: 150px;
+    height: 150px;
+    
+    /* O SEGREDO: pointer-events: none faz o clique "atravessar" a lupa 
+       e acertar o canvas de baixo. Assim você pode clicar e usar a lupa ao mesmo tempo. */
+    pointer-events: none; 
+    
+    display: none; /* Começa escondida */
+    z-index: 1000; /* Fica acima de tudo */
+    background-color: white; /* Fundo caso saia da borda */
+}
+}

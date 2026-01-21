@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Assinaturas (Painel Completo)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <h2>Configurações</h2>
+            
+            <div class="control-group global-settings">
+    <div class="header-group">
+        <label> Escolher Layout (PNG/JPG)</label>
+    </div>
+    <input type="file" id="upload-layout" accept=".png, .jpg, .jpeg, .webp, .bmp" class="input-file">
+    <p class="file-info">Selecione uma imagem para usar como fundo do template.</p>
+</div>
+
+<hr style="margin-bottom: 20px; border: 0; border-top: 1px solid #ddd;">
+
+            <div class="control-group global-settings">
+    <div class="header-group">
+        <label�🔤 Alterar Fonte (.ttf / .otf)</label>
+    </div>
+    <input type="file" id="upload-fonte" accept=".ttf, .otf" class="input-file">
+    <p class="file-info">Selecione um arquivo para mudar a letra instantaneamente.</p>
+</div>
+
+<hr style="margin-bottom: 20px; border: 0; border-top: 1px solid #ddd;">
+
+            <div class="control-group active-group" id="group-nome" onclick="ativarEdicao('nome')">
+                <div class="header-group">
+                    <input type="checkbox" id="ativo-nome" class="toggle-field" checked onchange="toggleCampo('nome')">
+                    <input type="radio" name="editor" id="radio-nome" checked>
+                    <label for="radio-nome">Editar Nome</label>
+                </div>
+                <input type="text" id="texto-nome" value="Ana Souza" class="main-input">
+                <div class="coords-row">
+                    <label>X: <input type="number" id="x-nome" value="50"></label>
+                    <label>Y: <input type="number" id="y-nome" value="200"></label>
+                </div>
+                <div class="coords-row">
+                    <label>Tam: <input type="number" id="size-nome" value="48"></label>
+                    <label>Cor: <input type="color" id="color-nome" value="#000000"></label>
+                </div>
+            </div>
+
+            <div class="control-group" id="group-cargo" onclick="ativarEdicao('cargo')">
+                <div class="header-group">
+                    <input type="checkbox" id="ativo-cargo" class="toggle-field" checked onchange="toggleCampo('cargo')">
+                    <input type="radio" name="editor" id="radio-cargo">
+                    <label for="radio-cargo">Editar Cargo</label>
+                </div>
+                <input type="text" id="texto-cargo" value="Gerente Comercial" class="main-input">
+                <div class="coords-row">
+                    <label>X: <input type="number" id="x-cargo" value="50"></label>
+                    <label>Y: <input type="number" id="y-cargo" value="260"></label>
+                </div>
+                <div class="coords-row">
+                    <label>Tam: <input type="number" id="size-cargo" value="28"></label>
+                    <label>Cor: <input type="color" id="color-cargo" value="#555555"></label>
+                </div>
+            </div>
+
+            <div class="control-group" id="group-tel" onclick="ativarEdicao('tel')">
+                <div class="header-group">
+                    <input type="checkbox" id="ativo-tel" class="toggle-field" checked onchange="toggleCampo('tel')">
+                    <input type="radio" name="editor" id="radio-tel">
+                    <label for="radio-tel">Editar Telefone</label>
+                </div>
+                <input type="text" id="texto-tel" value="(11) 99999-9999" class="main-input">
+                <div class="coords-row">
+                    <label>X: <input type="number" id="x-tel" value="50"></label>
+                    <label>Y: <input type="number" id="y-tel" value="310"></label>
+                </div>
+                <div class="coords-row">
+                    <label>Tam: <input type="number" id="size-tel" value="24"></label>
+                    <label>Cor: <input type="color" id="color-tel" value="#000000"></label>
+                </div>
+            </div>
+
+            <div class="control-group" id="group-email" onclick="ativarEdicao('email')">
+    <div class="header-group">
+        <input type="checkbox" id="ativo-email" class="toggle-field" checked onchange="toggleCampo('email')">
+        <input type="radio" name="editor" id="radio-email">
+        <label for="radio-email">Editar E-mail</label>
+    </div>
+    <input type="text" id="texto-email" value="seuemail@empresa.com.br" class="main-input">
+    
+    <div class="coords-row">
+        <label>X: <input type="number" id="x-email" value="50"></label>
+        <label>Y: <input type="number" id="y-email" value="360"></label>
+    </div>
+    
+    <div class="coords-row">
+        <label>Tam: <input type="number" id="size-email" value="24"></label>
+        <label>Cor: <input type="color" id="color-email" value="#000000"></label>
+    </div>
+</div>
+
+            <div class="control-group">
+                <div class="header-group">
+                    <label>💾 Exportar Assinatura</label>
+                </div>
+                <select id="formato-exportacao" class="main-input">
+                    <option value="png">PNG (Recomendado)</option>
+                    <option value="jpg">JPG (Comprimido)</option>
+                    <option value="webp">WebP (Moderno)</option>
+                    <option value="bmp">BMP (Sem Compressão)</option>
+                    <option value="gif">GIF (Animado)</option>
+                </select>
+                <button id="btnBaixar" onclick="baixarAssinatura()" style="margin-top: 10px; width: 100%;">📥 Baixar</button>
+            </div>
+        </aside>
+
+        <main class="preview-area">
+            <div class="canvas-wrapper">
+                <canvas id="canvasPreview"></canvas>
+                <canvas id="canvasLupa"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
